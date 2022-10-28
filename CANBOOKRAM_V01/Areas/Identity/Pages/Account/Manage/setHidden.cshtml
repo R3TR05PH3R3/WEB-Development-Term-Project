@@ -1,0 +1,23 @@
+﻿@page
+@model setHiddenModel
+@{
+    ViewData["Title"] = "Change Profile Hiding Setting";
+    ViewData["ActivePage"] = ManageNavPages.setHidden;
+}
+
+<h3>@ViewData["Title"]</h3>
+<partial name="_StatusMessage" for="StatusMessage" />
+<div class="row">
+    <div class="col-md-6">
+        <form id="picture-form" method="post" enctype="multipart/form-data">
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <div class="form-floating">Change Hidden settings <br>
+            </div>
+            <button id="change-picture-button" type="submit" asp-page-handler="setHidden" class="w-100 btn btn-lg btn-primary">Change Profile Hiding settings</button>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
