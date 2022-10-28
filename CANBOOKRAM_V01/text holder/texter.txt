@@ -1,0 +1,72 @@
+﻿//Secure the connection string
+            var builder = WebApplication.CreateBuilder();
+            var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+            optionsBuilder.UseSqlServer(connectionString);
+
+//to force connect db to Visual studio
+            Scaffold-DbContext "Server=DESKTOP-LB4INGS; Database=CANBOOKRAM_V01; Trusted_Connection=True;" Microsoft.EntityFrameworkCore.SqlServer -OutputDir Models -f
+
+//A code which I used inside Index of Friends
+
+@if(item.Approved == null){
+                            <form action="/Index">
+                                <input type="checkbox" id="myCheck1" value="Approved">
+                                <input type="checkbox" id="myCheck2" value="Declined">
+                                <button >Submit</button>
+                            </form>
+                        }
+
+
+
+                            <form method="post">
+                                <input type="hidden" asp-for="@item.Approved" />
+                                <input type="checkbox" value="Approve" class="btn btn-danger" />
+                                <input type="hidden" asp-for="@item.Approved" />
+                                <input type="checkbox" value="Decline" class="btn btn-danger" />
+                                <input type="submit" value="Submit" />
+                            </form>
+
+<li>
+        @if( != null)
+        {
+           <img src="data:image;base64,@System.Convert.ToBase64String(item.Picture)" width="80" height="80" class="Heyoo" />
+        }
+        @if(item.Picture == null)
+        {
+            //Well, nothings here.
+        }
+    </li>
+
+
+
+
+    <tr>
+                    <td>@Html.DisplayFor(modelItem => item.Name)</td>
+                  
+                    <td>
+                        @if(item.Picture != null)
+                        {
+                            <img src="data:image;base64,@System.Convert.ToBase64String(item.Picture)" width="80" height="80" class="Heyoo" />
+                        }
+                        @if(item.Picture == null)
+                        {
+                            //Well, nothings here.
+                        }
+                    </td>
+                    <td>@Html.DisplayFor(modelItem => item.PhoneNumber)</td>
+                    @if (item.AvgRating != "0")
+                    {
+                        <td>
+                            <p>User rating: @item.AvgRating/5.0</p>
+                        </td>
+                    }
+                    else
+                    {
+                        <td>
+                            <p>User has no rating</p>
+                        </td>
+                    }
+                    <td>
+                        <a class="btn btn-danger" asp-page="AddRating" asp-route-ratedUserID="@item.UserId">Rate User</a>
+                    </td>
+                </tr>
