@@ -1,0 +1,36 @@
+﻿@page
+@model CANBOOKRAM_V01.Pages.Friends.EditModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<script>
+    function DoPostBack() {
+        document.formRate.submit();
+    }
+</script>
+<h4>Friendship Request!!</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post" name="formRate">
+         <div class="rate">
+        <input asp-for="Rate" type="radio" id="Approve" name="rate" value="Approve"
+               onchange="DoPostBack();" />
+        <label for="star5" title="text">Approve</label>
+        <input asp-for="Rate" type="radio" id="Decline" name="rate" value="Decline"
+               onchange="DoPostBack();" />
+        <label for="star1" title="text">Decline</label>
+    </div>
+</form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="./Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

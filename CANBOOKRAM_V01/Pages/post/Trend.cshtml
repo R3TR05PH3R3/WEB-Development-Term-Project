@@ -1,0 +1,64 @@
+﻿@page
+@model CANBOOKRAM_V01.Pages.post.TrendModel
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+@{
+    ViewData["Title"] = "Index";
+}
+<h1>Lates 5 Trend Posts</h1>
+<table class="table">
+    <tbody>
+        @if (Model.UserPost != null)
+        {
+            <section>
+            @foreach (var item in Model.UserPostTop5)
+            {
+                @if(item.IsTrend == 1)
+                {
+                    <div class="boxito">
+				    <div class="header">
+                            <p class="date">@Html.DisplayFor(modelItem => item.Timestamp)</p>
+					    <h2>@Html.DisplayFor(modelItem => item.UserEmail)</h2>
+				    </div>
+                    <div class="header">
+                            <h5>Likes: @Html.DisplayFor(modelItem => item.Likes)</h5>
+                            <h5>Dislikes: @Html.DisplayFor(modelItem => item.Dislikes)</h5>
+                        
+				    </div>
+				    <div class="img">
+					    @if (item.Picture != null)
+                        {
+                            <img src="data:image;base64,@System.Convert.ToBase64String(item.Picture)" width="80" height="80" />
+                        }
+                        @if (item.Picture == null)
+                        {
+                            <div></div>
+                        }
+				    </div>
+				    <div class="description">
+                        @Html.DisplayFor(modelItem => item.Message)
+                    </div>
+                    <div class="header">
+                            @if(@User.Identity?.Name! == item.UserEmail){
+                                <a asp-page="./Edit" asp-route-id="@item.Id"><button>Edit</button></a>
+                                <a asp-page="./Delete" asp-route-id="@item.Id"><button>Delete</button></a>
+                            }
+                    </div>
+			    </div>
+                }
+            }
+            </section>
+        }
+        else
+        {
+            <tr>
+                <td>No posts!</td>
+            </tr>
+        }
+
+    </tbody>
+</table>
+<form method="post">
+        <a asp-page="Index">Back to List</a>
+</form>
+

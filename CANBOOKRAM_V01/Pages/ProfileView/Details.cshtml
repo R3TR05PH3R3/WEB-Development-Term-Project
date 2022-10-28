@@ -1,0 +1,167 @@
+﻿@page
+@model CANBOOKRAM_V01.Pages.ProfileView.DetailsModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+@if (Model.ProfileDetail.Hidden == 0 || Model.ProfileDetail.Email == @User.Identity?.Name! || Model.isFr == true)
+{
+<div>
+    <h4>ProfileDetail</h4>
+    <hr />
+    <dl class="row">
+        
+        
+            <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.ProfileDetail.Email)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ProfileDetail.Email)
+        </dd>
+
+            <dt class="col-sm-2">
+            User Id
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ProfileDetail.UserId)
+        </dd>
+
+        <dt class="col-sm-2">
+            Profile Picture
+        </dt>
+        <dd class="col-sm-10">
+            @if (Model.ProfileDetail.ProfilePicture != null)
+                        {
+                            <img class="boxerman" src="data:image;base64,@System.Convert.ToBase64String(Model.ProfileDetail.ProfilePicture)" />
+                        }
+                        @if (Model.ProfileDetail.ProfilePicture == null)
+                        {
+                            <div></div>
+                        }
+        </dd>
+
+        <dt class="col-sm-2">
+            First Name
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ProfileDetail.FirstName)
+        </dd>
+
+        <dt class="col-sm-2">
+            Last Name
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ProfileDetail.LastName)
+        </dd>
+
+        <dt class="col-sm-2">
+            Birth Date (If Inputted): 
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ProfileDetail.BirthDate)
+            </dd>
+
+        <dt class="col-sm-2">
+            Phone Number
+        </dt>
+        @Html.DisplayFor(model => model.aaa.PhoneNumber)
+    </dl>
+</div>
+<table class="table">
+    <tbody>
+        <h1>Latest 3 Posts</h1>
+        @if (Model.UserPost != null)
+        {
+            <section>
+            @foreach (var item in Model.UserPost)
+            {
+
+                        <div class="boxito">
+				    <div class="header">
+                        @if(item.IsTrend == 1)
+                            {
+                                <h3>Trend Post</h3>
+                            }
+                            <p class="date">@Html.DisplayFor(modelItem => item.Timestamp)</p>
+					    <h2>@Html.DisplayFor(modelItem => item.UserEmail)</h2>
+                        
+				    </div>
+                    <div class="header">
+                            <h5>Likes: @Html.DisplayFor(modelItem => item.Likes)</h5>
+                            <h5>Dislikes: @Html.DisplayFor(modelItem => item.Dislikes)</h5>
+                        
+				    </div>
+				    <div class="img">
+					    @if (item.Picture != null)
+                        {
+                            <img src="data:image;base64,@System.Convert.ToBase64String(item.Picture)" width="80" height="80" />
+                        }
+                        @if (item.Picture == null)
+                        {
+                            <div></div>
+                        }
+				    </div>
+				    <div class="description">
+                        @Html.DisplayFor(modelItem => item.Message)
+                    </div>
+			    </div>
+
+            }
+            </section>
+             <h1>Lates 5 Trend Posts</h1>
+            <section>
+            @foreach (var item in Model.UserPostTop5)
+            {
+                    if(item.IsTrend == 1)
+                    {
+                        <div class="boxito">
+				    <div class="header">
+                            <p class="date">@Html.DisplayFor(modelItem => item.Timestamp)</p>
+					    <h2>@Html.DisplayFor(modelItem => item.UserEmail)</h2>
+                        
+				    </div>
+                    <div class="header">
+                            <h5>Likes: @Html.DisplayFor(modelItem => item.Likes)</h5>
+                            <h5>Dislikes: @Html.DisplayFor(modelItem => item.Dislikes)</h5>
+                        
+				    </div>
+				    <div class="img">
+					    @if (item.Picture != null)
+                        {
+                            <img src="data:image;base64,@System.Convert.ToBase64String(item.Picture)" width="80" height="80" />
+                        }
+                        @if (item.Picture == null)
+                        {
+                            <div></div>
+                        }
+				    </div>
+				    <div class="description">
+                        @Html.DisplayFor(modelItem => item.Message)
+                    </div>
+			    </div>
+                    }
+
+            }
+            </section>
+        }
+        else
+        {
+            <tr>
+                <td>No posts!</td>
+            </tr>
+        }
+
+    </tbody>
+</table>
+}
+else if(Model.ProfileDetail.Hidden == 1)
+{
+    <h2>This Profile is hidden!!</h2>
+            
+}
+<div>
+    <a asp-page="./Index">Back to List</a>
+</div>

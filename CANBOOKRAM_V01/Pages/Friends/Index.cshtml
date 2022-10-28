@@ -1,0 +1,76 @@
+﻿@page
+@model CANBOOKRAM_V01.Pages.Friends.IndexModel
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+@{
+    ViewData["Title"] = "Index";
+}
+<p>
+    <a asp-page="Create"><button>Add Friends</button></a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                User Name
+            </th>
+            <th>
+                Friend Name
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+            @foreach (var item in Model.FriendshipTable) {
+
+            @if(@User.Identity?.Name! == item.Useremail || @User.Identity?.Name! == item.Friendemail){
+                <tr>
+                    <td>
+                            @if(item.Friendemail == @User.Identity?.Name!)
+                            {
+                                @Html.DisplayFor(modelItem => item.Friendemail)
+                            }
+                            @if(item.Useremail == @User.Identity?.Name!)
+                            {
+                                @Html.DisplayFor(modelItem => item.Useremail)
+                            }
+                    </td>
+                    <td>
+                            @if(item.Friendemail == @User.Identity?.Name!)
+                            {
+                                @Html.DisplayFor(modelItem => item.Useremail)
+                            }
+                            @if(item.Useremail == @User.Identity?.Name!)
+                            {
+                                @Html.DisplayFor(modelItem => item.Friendemail)
+                            }
+                    </td>
+                    <td>
+                        @if (item.Approved == "Approve" || item.Approved == "approve") {
+                            <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
+                        } 
+                        @if(item.Approved == "Decline" || item.Approved == "decline"){
+                                <p>Friendship denied!<br />
+                                    Press to continue!
+                                </p>
+                                <p>
+                                    <a asp-page="./Delete" asp-route-id="@item.Id">Continue</a>
+                                </p>
+                        }
+                        @if(item.Approved == null && item.Friendemail == @User.Identity?.Name!){
+                            <a asp-page="./Edit" asp-route-id="@item.Id">Friendship Request!!</a>
+                        }
+                        @if(item.Approved == null && item.Useremail == @User.Identity?.Name!){
+                            <p>
+                                Friendship pending!
+                            </p>
+                        }
+                    </td>
+                </tr>
+            }
+
+        }
+    </tbody>
+</table>
+
+
