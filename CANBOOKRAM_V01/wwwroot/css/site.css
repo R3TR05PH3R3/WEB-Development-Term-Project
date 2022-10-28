@@ -1,0 +1,151 @@
+* {
+    border-radius: 20px;
+}
+
+h1 {
+    font-family: 'Overpass Mono', monospace;
+    font-size: 30px;
+    font-style: normal;
+    font-variant: small-caps;
+    font-weight: 700;
+    line-height: 20px;
+    align-items: center;
+}
+
+
+
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+    margin-bottom: 60px;
+    background-image: url(http://sfwallpaper.com/images/background-image-for-website-1.jpg);
+    background-repeat: no-repeat;
+    background-size: auto;
+    background-attachment: fixed;
+    padding-top: 60px;
+}
+
+div.header {
+    padding: 3px;
+}
+
+    div.header h2 {
+        margin: 0;
+        font-size: 20px;
+        padding: 2px;
+    }
+
+.box .header .date {
+    float: right;
+    margin: 0;
+    padding: 2px;
+}
+
+.box {
+    width: 600px;
+    margin: auto;
+    margin-top: 60px;
+    margin-bottom: 60px;
+    border: none;
+    border-radius: 5px;
+    padding: 2px;
+}
+
+img {
+    width: 100%;
+    height: 100%;
+    margin: 0px;
+    padding: 2px;
+}
+
+.boxerman {
+    width: 100px;
+    height: 100%;
+    margin: 0px;
+    padding: 2px;
+}
+
+div.description {
+    padding: 15px;
+    padding: 2px;
+}
+
+#wrapper {
+    width: 500px;
+    height: 50%;
+    overflow: hidden;
+    border: 0px solid #000;
+    margin: 50px auto;
+    padding: 10px;
+    margin: 10px;
+    padding: 2px;
+    position: relative;
+}
+
+#main-content {
+    width: 250px;
+    height: 40%;
+    margin: 10px auto;
+    background-color: #fff;
+    border: 2px solid #e6e6e6;
+    padding: 2px;
+}
+
+button {
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 5px;
+    margin: auto;
+    padding: 10px 5px;
+    justify-content: center;
+}
+
+    button:hover {
+        background: #eee;
+        cursor: pointer;
+
+    }
+.form-floating, .form-group {
+    padding: 10px;
+}
+.formito {
+    width: 600px;
+    margin: auto;
+    margin-top: 60px;
+    margin-bottom: 60px;
+    border: none;
+    padding: 2px;
+}
+
+.boxito {
+    background-color: white;
+    width: 600px;
+    margin: auto;
+    margin-top: 60px;
+    margin-bottom: 60px;
+    border: 1px solid #EDEEEE;
+    border-radius: 5px;
+}
+
+.Heyoo{
+    width: 50px;
+    height: 50px;
+}
+
+.wrapper-cutter {
+    height: 300px; /*Pick it whatever you want*/
+    overflow: hidden;
+} 
